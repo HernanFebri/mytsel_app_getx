@@ -238,14 +238,132 @@ class HomeView extends GetView<HomeController> {
                       children: [
                         // Body
                         Expanded(
-                          child: Container(),
+                          child: ListView(
+                            padding: const EdgeInsets.symmetric(horizontal: 25),
+                            // physics:
+                            //     AlwaysScrollableScrollPhysics(), // or AlwaysScrollableScrollPhysics()
+                            // shrinkWrap: true,
+                            children: const [
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Text(
+                                "Kategori Paket",
+                                style: TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold),
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  ItemKategori(
+                                    title: "Internet",
+                                    icon: "assets/icons/internet.png",
+                                  ),
+                                  ItemKategori(
+                                    title: "Telpon",
+                                    icon: "assets/icons/telpon.png",
+                                  ),
+                                  ItemKategori(
+                                    title: "SMS",
+                                    icon: "assets/icons/sms.png",
+                                  ),
+                                  ItemKategori(
+                                    title: "Roaming",
+                                    icon: "assets/icons/roaming.png",
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  ItemKategori(
+                                    title: "Hiburan",
+                                    icon: "assets/icons/hiburan.png",
+                                  ),
+                                  ItemKategori(
+                                    title: "Unggulan",
+                                    icon: "assets/icons/unggulan.png",
+                                  ),
+                                  ItemKategori(
+                                    title: "Tersimpan",
+                                    icon: "assets/icons/tersimpan.png",
+                                  ),
+                                  ItemKategori(
+                                    title: "Riwayat",
+                                    icon: "assets/icons/riwayat-icon.png",
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Terbaru dari Telkomsel",
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  Text(
+                                    "Lihat Semua",
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      color: Color(0xFFEC2028),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              SingleChildScrollView(
+                                scrollDirection: Axis.horizontal,
+                                child: Row(
+                                  children: [
+                                    ItemTerbaru(
+                                      image: "assets/images/images-1.png",
+                                    ),
+                                    ItemTerbaru(
+                                      image: "assets/images/images-2.png",
+                                    ),
+                                    ItemTerbaru(
+                                      image: "assets/images/images-1.png",
+                                    ),
+                                    ItemTerbaru(
+                                      image: "assets/images/images-2.png",
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                            ],
+                          ),
                         ),
                         // Navigation
                         Container(
-                          margin: EdgeInsets.only(
-                            bottom: context.mediaQueryPadding.bottom,
+                          margin: const EdgeInsets.only(
+                            bottom: 10,
                           ),
                           height: 100,
+                          decoration: const BoxDecoration(
+                            border: Border(
+                              top: BorderSide(color: Colors.grey),
+                            ),
+                          ),
                           // color: Colors.amber,
                           child: const Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -287,6 +405,69 @@ class HomeView extends GetView<HomeController> {
           )
         ],
       ),
+    );
+  }
+}
+
+class ItemTerbaru extends StatelessWidget {
+  const ItemTerbaru({
+    super.key,
+    required this.image,
+  });
+
+  final String image;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(right: 20),
+      width: Get.width * 0.7,
+      height: 100,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(16),
+        image: DecorationImage(
+          image: AssetImage(
+            image,
+          ),
+          fit: BoxFit.cover,
+        ),
+      ),
+    );
+  }
+}
+
+class ItemKategori extends StatelessWidget {
+  const ItemKategori({
+    super.key,
+    required this.title,
+    required this.icon,
+  });
+
+  final String title;
+  final String icon;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          width: 50,
+          height: 50,
+          child: Image.asset(
+            icon,
+            fit: BoxFit.cover,
+          ),
+        ),
+        const SizedBox(
+          height: 5,
+        ),
+        Text(
+          title,
+          style: const TextStyle(fontSize: 16),
+        )
+      ],
     );
   }
 }
